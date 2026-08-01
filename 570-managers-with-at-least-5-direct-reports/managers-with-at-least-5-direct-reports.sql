@@ -1,9 +1,8 @@
-SELECT e.name
-FROM Employee e
-JOIN (
+SELECT name
+FROM employee
+WHERE id IN (
     SELECT managerId
-    FROM Employee
+    FROM employee
     GROUP BY managerId
     HAVING COUNT(*) >= 5
-) t
-ON e.id = t.managerId;
+);
